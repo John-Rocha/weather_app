@@ -7,11 +7,12 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ApplicationProvider(
+    return ApplicationProvider(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Weather App',
-        home: WeatherPage(),
+        theme: ThemeData.dark(),
+        home: const WeatherPage(),
       ),
     );
   }
