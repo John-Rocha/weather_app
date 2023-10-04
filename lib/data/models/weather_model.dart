@@ -11,6 +11,17 @@ class WeatherModel extends WeatherEntity {
     required super.humidity,
   });
 
+  const WeatherModel.empty()
+      : super(
+          cityName: '',
+          main: '',
+          description: '',
+          iconCode: '',
+          temperature: 0,
+          pressure: 0,
+          humidity: 0,
+        );
+
   factory WeatherModel.fromJson(Map<String, dynamic> jsonMap) {
     return WeatherModel(
       cityName: jsonMap['name'],
