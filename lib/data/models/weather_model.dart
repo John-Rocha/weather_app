@@ -51,4 +51,16 @@ class WeatherModel extends WeatherEntity {
       }
     };
   }
+
+  WeatherEntity toEntity() {
+    return WeatherEntity(
+      cityName: cityName,
+      main: main,
+      description: description,
+      iconCode: iconCode,
+      temperature: temperature,
+      pressure: pressure,
+      humidity: humidity,
+    );
+  }
 }
