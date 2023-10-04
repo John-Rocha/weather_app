@@ -18,6 +18,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       onCityChanged,
       transformer: debounce(const Duration(milliseconds: 500)),
     );
+    on<OnCityEmpty>(onCityEmpty);
   }
 
   Future<FutureOr<void>> onCityChanged(
@@ -30,6 +31,13 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       (failure) => emit(WeatherLoadError(failure.message)),
       (weatherEntity) => emit(WeatherLoaded(weatherEntity)),
     );
+  }
+
+  FutureOr<void> onCityEmpty(
+    OnCityEmpty event,
+    Emitter<WeatherState> emit,
+  ) {
+    emit(WeatherEmpty());
   }
 }
 
