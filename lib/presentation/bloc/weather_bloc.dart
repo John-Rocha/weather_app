@@ -21,7 +21,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     on<OnCityEmpty>(onCityEmpty);
   }
 
-  Future<FutureOr<void>> onCityChanged(
+  FutureOr<void> onCityChanged(
     OnCityChanged event,
     Emitter<WeatherState> emit,
   ) async {
@@ -37,7 +37,9 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     OnCityEmpty event,
     Emitter<WeatherState> emit,
   ) {
-    emit(WeatherEmpty());
+    if (event.cityName.isEmpty) {
+      emit(WeatherEmpty());
+    }
   }
 }
 

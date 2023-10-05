@@ -7,7 +7,10 @@ abstract class WeatherEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class OnCityEmpty extends WeatherEvent {}
+class OnCityEmpty extends WeatherEvent {
+  final String cityName;
+  const OnCityEmpty({this.cityName = ''});
+}
 
 class OnCityChanged extends WeatherEvent {
   final String cityName;

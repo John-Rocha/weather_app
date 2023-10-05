@@ -36,6 +36,23 @@ void main() {
   });
 
   blocTest<WeatherBloc, WeatherState>(
+    'emits [WeatherEmpty] when data is empty in text field',
+    build: () {
+      when(mockGetCurrentWeatherUseCase.execute(cityName)).thenAnswer(
+        (_) async => const Right(
+          WeatherEntity.empty(),
+        ),
+      );
+      return weatherBloc;
+    },
+    act: (bloc) => bloc.add(const OnCityEmpty()),
+    wait: const Duration(milliseconds: 500),
+    expect: () {
+      return <WeatherState>[WeatherEmpty()];
+    },
+  );
+
+  blocTest<WeatherBloc, WeatherState>(
     'emits [WeatherLoading, WeatherLoaded] when data is gotten successfully.',
     build: () {
       when(mockGetCurrentWeatherUseCase.execute(cityName))

@@ -19,6 +19,16 @@ class WeatherEntity extends Equatable {
     required this.humidity,
   });
 
+  const WeatherEntity.empty({
+    this.cityName = '',
+    this.main = '',
+    this.description = '',
+    this.iconCode = '',
+    this.temperature = 0,
+    this.pressure = 0,
+    this.humidity = 0,
+  });
+
   @override
   List<Object?> get props => [
         cityName,
