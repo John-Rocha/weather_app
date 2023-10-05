@@ -41,7 +41,7 @@ class _WeatherPageState extends State<WeatherPage> {
                   onPressed: () {
                     _controller.clear();
                     context.read<WeatherBloc>().add(
-                          OnCityEmpty(),
+                          const OnCityEmpty(),
                         );
                   },
                   icon: const Icon(Icons.clear),
@@ -59,7 +59,7 @@ class _WeatherPageState extends State<WeatherPage> {
               onChanged: (query) {
                 if (query.isEmpty) {
                   context.read<WeatherBloc>().add(
-                        OnCityEmpty(),
+                        const OnCityEmpty(),
                       );
                 }
                 context.read<WeatherBloc>().add(
@@ -70,17 +70,12 @@ class _WeatherPageState extends State<WeatherPage> {
             const SizedBox(height: 32.0),
             BlocBuilder<WeatherBloc, WeatherState>(
               builder: (context, state) {
-                if (_controller.text.isEmpty) {
+                if (state is WeatherLoading) {
                   return const Center(
-                    child: Text('Enter the name of a city'),
+                    child: CircularProgressIndicator(),
                   );
                 }
 
-                if (state is WeatherLoading) {
-                  return const Center(
-                    child: CupertinoActivityIndicator(),
-                  );
-                }
                 if (state is WeatherLoaded) {
                   return Column(
                     key: const Key('weather_data'),
@@ -193,6 +188,13 @@ class _WeatherPageState extends State<WeatherPage> {
                     ],
                   );
                 }
+
+                if (_controller.text.isEmpty) {
+                  return const Center(
+                    child: Text('Enter the name of a city'),
+                  );
+                }
+
                 if (state is WeatherLoadError) {
                   return Center(
                     child: Text(state.message),

@@ -13,9 +13,7 @@ class ApplicationProvider extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => WeatherBloc(
-            getCurrentWeatherUseCase: locator(),
-          ),
+          create: (context) => locator<WeatherBloc>(),
         )
       ],
       child: child,
