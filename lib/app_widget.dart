@@ -11,7 +11,7 @@ class AppWidget extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Weather App',
-        theme: ThemeData.dark(),
+        theme: ThemeData.dark().copyWith(useMaterial3: true),
         home: const WeatherPage(),
       ),
     );
