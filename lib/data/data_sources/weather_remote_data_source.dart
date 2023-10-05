@@ -10,13 +10,13 @@ abstract class WeatherRemoteDataSource {
 }
 
 class WeatherRemoteDataSourceImpl extends WeatherRemoteDataSource {
-  final http.Client client;
+  final http.Client _client;
 
-  WeatherRemoteDataSourceImpl(this.client);
+  WeatherRemoteDataSourceImpl({required http.Client client}) : _client = client;
 
   @override
   Future<WeatherModel> getCurrentWeather(String cityName) async {
-    final http.Response(:body, :statusCode) = await client.get(
+    final http.Response(:body, :statusCode) = await _client.get(
       Uri.parse(
         Constants.currentWeatherByName(cityName),
       ),

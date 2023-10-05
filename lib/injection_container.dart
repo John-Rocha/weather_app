@@ -28,7 +28,7 @@ void setupLocator() {
 
   //datasources
   locator.registerLazySingleton<WeatherRemoteDataSource>(
-    () => WeatherRemoteDataSourceImpl(locator()),
+    () => WeatherRemoteDataSourceImpl(client: locator()),
   );
 
   //external

@@ -22,7 +22,8 @@ void main() {
 
   setUp(() {
     mockHttpClient = MockHttpClient();
-    weatherRemoteDataSourceImpl = WeatherRemoteDataSourceImpl(mockHttpClient);
+    weatherRemoteDataSourceImpl =
+        WeatherRemoteDataSourceImpl(client: mockHttpClient);
   });
   const cityName = 'Macapá';
   group('get current weather', () {
